@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa do Mundo FIFA 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url('imagens/FIFA-World-Cup-26.jpg') center/cover fixed;
+            color: #1a1a1a;
+        }
+
+        header {
+            background-color: #002776;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 8px; }
+        header p  { font-size: 1rem; opacity: 0.85; }
+
+        nav {
+            background-color: #001a55;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover { background-color: #FFDF00; color: #002776; }
+
+        .container {
+            max-width: 860px;
+            margin: 30px auto;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.93);
+            border-radius: 10px;
+            padding: 28px;
+            border-left: 6px solid #009c3b;
+        }
+
+        section h2 { font-size: 1.4rem; color: #002776; margin-bottom: 12px; }
+        section p  { line-height: 1.7; color: #333; margin-bottom: 8px; }
+
+        .cards { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+
+        .card {
+            flex: 1;
+            min-width: 140px;
+            background: #f0f4f8;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            border-bottom: 4px solid #009c3b;
+        }
+
+        .card h3 { font-size: 1.6rem; color: #002776; }
+        .card p  { font-size: 0.85rem; color: #555; margin: 0; }
+
+        button {
+            margin-top: 16px;
+            padding: 12px 28px;
+            background-color: #009c3b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover { background-color: #007a2f; }
+
+        #area-tabela { display: none; margin-top: 16px; }
+        #area-tabela img { width: 100%; border-radius: 8px; }
+
+        .player-card {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            background-color: #002776;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .player-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid #FFDF00;
+            object-fit: contain;
+        }
+
+        .player-info { color: white; }
+        .player-info h3  { font-size: 1.2rem; color: #FFDF00; margin-bottom: 10px; }
+        .player-info p   { font-size: 0.9rem; margin-bottom: 4px; }
+        .player-info span { color: #aac4ff; }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            background-color: #002776;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>⚽ Copa do Mundo FIFA 2026</h1>
+    <p>EUA · Canadá · México — 48 seleções, 104 partidas</p>
+</header>
+
+<nav>
+    <a href="#organizacao">🌍 Organização</a>
+    <a href="#formato">⚽ Formato</a>
+    <a href="#impacto">🏆 Impacto</a>
+    <a href="#tabela">📋 Tabela</a>
+    <a href="#jogador">👤 Jogador</a>
+</nav>
+
+<div class="container">
+
+    <section id="organizacao">
+        <h2>🌍 Organização e Sedes</h2>
+        <p>A Copa do Mundo FIFA de 2026 será a primeira edição realizada em <strong>três países</strong>: Estados Unidos, Canadá e México. Essa será também a maior Copa da história em número de cidades-sede, com partidas distribuídas por diversas regiões da América do Norte, ampliando o alcance global do torneio.</p>
+        <div class="cards">
+            <div class="card"><h3>🇺🇸</h3><p>EUA — sede principal</p></div>
+            <div class="card"><h3>🇨🇦</h3><p>Canadá — 1ª vez na história</p></div>
+            <div class="card"><h3>🇲🇽</h3><p>México — 3ª vez sediando</p></div>
+        </div>
+    </section>
+
+    <section id="formato">
+        <h2>⚽ Novo Formato</h2>
+        <p>O torneio contará com <strong>48 seleções</strong>, em vez das tradicionais 32. As equipes serão divididas em grupos, aumentando o número total de jogos e dando mais oportunidades para países de diferentes continentes participarem. Essa mudança foi promovida pela FIFA para tornar a competição mais inclusiva e competitiva.</p>
+        <div class="cards">
+            <div class="card"><h3>48</h3><p>Seleções</p></div>
+            <div class="card"><h3>12</h3><p>Grupos</p></div>
+            <div class="card"><h3>104</h3><p>Partidas</p></div>
+        </div>
+    </section>
+
+    <section id="impacto">
+        <h2>🏆 Expectativas e Impacto</h2>
+        <p>A edição de 2026 promete ser uma das mais assistidas da história, com grande impacto econômico e cultural nos países-sede. Além disso, seleções tradicionais e emergentes devem protagonizar jogos de alto nível, aumentando ainda mais o interesse global pelo futebol e fortalecendo o esporte em novas regiões.</p>
+        <div class="cards">
+            <div class="card"><h3>+5bi</h3><p>Espectadores estimados</p></div>
+            <div class="card"><h3>🌐</h3><p>Maior alcance global</p></div>
+            <div class="card"><h3>💰</h3><p>Impacto econômico recorde</p></div>
+        </div>
+    </section>
+
+    <section id="tabela">
+        <h2>📋 Tabela de Jogos</h2>
+        <p>Clique no botão para ver a tabela oficial de jogos.</p>
+        <button onclick="mostrarTabela()">Mostrar Tabela de Jogos</button>
+        <div id="area-tabela">
+            <img src="imagens/Tabela_Jogos.png" alt="Tabela de Jogos">
+        </div>
+    </section>
+
+    <section id="jogador">
+        <h2>👤 Jogador em Destaque</h2>
+        <p>Clique em <strong>Revelar</strong> para descobrir o jogador desta edição.</p>
+        <div class="player-card">
+            <img id="player-img" src="imagens/img__.svg" alt="Jogador">
+            <div class="player-info">
+                <h3 id="player-nome">??? ??? ???</h3>
+                <p><span>Nascimento:</span> <span id="nasc">??/??/????</span></p>
+                <p><span>Altura:</span> <span id="altura">?.?? m</span></p>
+                <p><span>Posição:</span> <span id="posicao">????????</span></p>
+                <p><span>Rank:</span> <span id="rank">?.?</span></p>
+            </div>
+        </div>
+        <button onclick="revelar()">Revelar Jogador</button>
+    </section>
+
+</div>
+
+<footer>Copa do Mundo FIFA 2026 — Atividade Escolar</footer>
+
+<script>
+    function mostrarTabela() {
+        document.getElementById('area-tabela').style.display = 'block';
+    }
+
+    function revelar() {
+        document.getElementById('player-img').src = 'imagens/_vinicius_junior.png';
+
+        const dados = {
+            'player-nome': 'Vinícius José Paixão de Oliveira Júnior',
+            'nasc':        '12/07/2000 (25 anos)',
+            'altura':      '1,76 m',
+            'posicao':     'Ponta-esquerda / Atacante',
+            'rank':        '9,5'
+        };
+
+        for (const [id, valor] of Object.entries(dados)) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.textContent = valor;
+                el.classList.remove('placeholder');
+                el.classList.add('card-text');
+            }
+        }
+
+        event.target.textContent = 'Revelado!';
+        event.target.disabled = true;
+    }
+</script>
+
+</body>
+</html>
