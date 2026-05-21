@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Média Escolar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 350px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Média Escolar</h1>
+    <input type="text" id="nome" placeholder="Nome do aluno">
+    <input type="number" id="nota1" placeholder="Nota 1">
+    <input type="number" id="nota2" placeholder="Nota 2">
+    <input type="number" id="nota3" placeholder="Nota 3">
+    <button onclick="calcular()">Calcular</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      var nome = document.getElementById('nome').value;
+      var n1 = Number(document.getElementById('nota1').value);
+      var n2 = Number(document.getElementById('nota2').value);
+      var n3 = Number(document.getElementById('nota3').value);
+      var media = (n1 + n2 + n3) / 3;
+      var resultado = document.getElementById('resultado');
+
+      var texto = nome + ' - Média: ' + media.toFixed(2) + '<br>';
+
+      if (media >= 7.0) {
+        resultado.style.color = 'blue';
+        texto += 'Situação: Aprovado';
+      } else if (media >= 4.0) {
+        var falta = 10 - media;
+        resultado.style.color = 'green';
+        texto += 'Situação: Exame Final<br>Falta ' + falta.toFixed(2) + ' pontos para 10';
+      } else {
+        resultado.style.color = 'red';
+        texto += 'Situação: Reprovado';
+      }
+
+      resultado.innerHTML = texto;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Taxas Infinity Bank</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 380px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      text-align: left;
+      font-size: 1em;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Infinity Bank - Taxas</h1>
+
+    <select id="bandeira">
+      <option value="">Selecione a bandeira</option>
+      <option value="visa">Visa (2%)</option>
+      <option value="master">Mastercard (1.85%)</option>
+      <option value="elo">Elo (3%)</option>
+    </select>
+
+    <input type="number" id="valor" placeholder="Valor da venda (R$)">
+    <input type="number" id="parcelas" placeholder="Número de parcelas">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      var bandeira = document.getElementById('bandeira').value;
+      var valor = parseFloat(document.getElementById('valor').value);
+      var parcelas = parseInt(document.getElementById('parcelas').value);
+      var resultado = document.getElementById('resultado');
+
+      if (!bandeira || isNaN(valor) || isNaN(parcelas)) {
+        resultado.innerHTML = '<span style="color:red">Preencha todos os campos!</span>';
+        return;
+      }
+
+      var taxaBandeira;
+      switch (bandeira) {
+        case 'visa':
+          taxaBandeira = 0.02;
+          break;
+        case 'master':
+          taxaBandeira = 0.0185;
+          break;
+        case 'elo':
+          taxaBandeira = 0.03;
+          break;
+      }
+
+      var valorTaxa = valor * taxaBandeira;
+      var jurosTotais = valor * (0.015 * parcelas);
+      var taxaMensal = 12.50 * parcelas;
+      var valorTotal = valor + valorTaxa + jurosTotais + taxaMensal;
+      var valorParcela = valorTotal / parcelas;
+
+      resultado.innerHTML =
+        '<strong>Valor da Taxa (bandeira):</strong> R$ ' + valorTaxa.toFixed(2) + '<br>' +
+        '<strong>Juros Totais:</strong> R$ ' + jurosTotais.toFixed(2) + '<br>' +
+        '<strong>Taxa Mensal Total:</strong> R$ ' + taxaMensal.toFixed(2) + '<br>' +
+        '<strong>Valor Total:</strong> R$ ' + valorTotal.toFixed(2) + '<br>' +
+        '<strong>Valor por Parcela:</strong> R$ ' + valorParcela.toFixed(2);
+    }
+  </script>
+
+</body>
+</html>

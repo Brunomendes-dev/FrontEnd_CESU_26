@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Validador de Cartão</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.4em;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #painel {
+      margin-top: 20px;
+      text-align: left;
+      background-color: #f8f9fa;
+      border-radius: 6px;
+      padding: 15px;
+      display: none;
+      line-height: 2;
+    }
+
+    .valido { color: green; font-weight: bold; }
+    .invalido { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Card Guard - Validador</h1>
+
+    <input type="text" id="cartao" placeholder="Número do cartão (até 16 dígitos)">
+    <button onclick="analisar()">Analisar Cartão</button>
+
+    <div id="painel"></div>
+  </div>
+
+  <script>
+    function analisar() {
+      var numero = document.getElementById('cartao').value.replace(/\D/g, '');
+      var painel = document.getElementById('painel');
+      painel.style.display = 'block';
+
+      if (numero.length < 13 || numero.length > 16) {
+        painel.innerHTML = '<span class="invalido">Número deve ter entre 13 e 16 dígitos!</span>';
+        return;
+      }
+
+      var valido = luhn(numero);
+      var bandeira = getBandeira(numero);
+      var setor = getSetor(numero[0]);
+
+      var status = valido
+        ? '<span class="valido">✔ Válido</span>'
+        : '<span class="invalido">✘ Inválido</span>';
+
+      painel.innerHTML =
+        '<strong>Status:</strong> ' + status + '<br>' +
+        '<strong>Bandeira:</strong> ' + bandeira + '<br>' +
+        '<strong>Setor:</strong> ' + setor + '<br>' +
+        '<strong>BIN (6 primeiros):</strong> ' + numero.substring(0, 6);
+    }
+
+    function luhn(numero) {
+      var soma = 0;
+      var invertido = numero.split('').reverse();
+
+      for (var i = 0; i < invertido.length; i++) {
+        var digito = Number(invertido[i]);
+        if (i % 2 === 1) {
+          digito *= 2;
+          if (digito > 9) digito -= 9;
+        }
+        soma += digito;
+      }
+
+      return soma % 10 === 0;
+    }
+
+    function getBandeira(numero) {
+      if (numero[0] === '4') return 'Visa';
+      if (numero[0] === '5') return 'Mastercard';
+      if (numero.substring(0, 2) === '34' || numero.substring(0, 2) === '37') return 'American Express';
+      if (numero.substring(0, 4) === '6011') return 'Discover';
+      if (numero.substring(0, 3) >= '636' && numero.substring(0, 3) <= '655') return 'Elo';
+      return 'Desconhecida';
+    }
+
+    function getSetor(primeiro) {
+      var setores = {
+        '1': 'Companhias Aéreas',
+        '2': 'Companhias Aéreas / Financeiro',
+        '3': 'Viagens e Entretenimento',
+        '4': 'Bancário e Financeiro',
+        '5': 'Bancário e Financeiro',
+        '6': 'Comércio e Bancário',
+        '7': 'Petróleo e Energia',
+        '8': 'Saúde e Telecomunicações',
+        '9': 'Governamental'
+      };
+      return setores[primeiro] || 'Desconhecido';
+    }
+  </script>
+
+</body>
+</html>
